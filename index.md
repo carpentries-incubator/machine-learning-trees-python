@@ -5,11 +5,9 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 Decision trees are a family of algorithms that are based around a tree-like structure of decision rules. These algorithms often perform well in tasks such as prediction and classification. This lesson explores the properties of tree models in the context of mortality prediction.
 
-## Critical care data
-
 The dataset that we will be using for this project is a subset of the [eICU Collaborative Research Database][eicu-crd] that has been created for demonstration purposes. 
 
-The demo dataset is provided as an SQLite3 file, a relational database comprising approximately 25 tables. We will begin by loading relevant data from these tables into a single Pandas DataFrame with the help of an SQL query. 
+The demo dataset is provided as an SQLite3 file, a relational database comprising approximately 25 tables. We will begin by loading relevant data to our local machine. 
 
 <!-- this is an html comment -->
 

@@ -19,11 +19,9 @@ and in [Anaconda documentation][anaconda-install].
 
 ## Obtain lesson materials
 
-1. Create a folder called `ml-trees` on your Desktop.
-2. Create a subfolder called `data`.
-3. Download [eicu_v2_0_1.sqlite3.gz][eicu-data] from the Files section of the project page.
-4. Move downloaded file to `ml-trees/data`.
-5. Unzip the file.
+1. Download [eicu-cohort.csv](./data/eicu_cohort.csv).
+2. Create a folder called `carpentries-ml-trees` on your Desktop.
+3. Move downloaded files to `carpentries-ml-trees`.
 
 ## Launch Python interface
 

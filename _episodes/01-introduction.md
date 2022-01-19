@@ -15,7 +15,7 @@ keypoints:
 
 We would like to develop an algorithm that can be used to predict the outcome of patients who are admitted to intensive care units using observations available on the day of admission.
 
-Our analysis focuses on 1091 patients admitted to critical care units in the continental United States. Data is provided by the Philips eICU Research Institute, a critical care telehealth program.
+Our analysis focuses on ~1000 patients admitted to critical care units in the continental United States. Data is provided by the Philips eICU Research Institute, a critical care telehealth program.
 
 We will use decision trees for this task. Decision trees are a family of intuitive "machine learning" algorithms that often perform well at prediction and classification.
 
@@ -24,29 +24,17 @@ We will use decision trees for this task. Decision trees are a family of intuiti
 We will begin by extracting a set of observations from our critical care dataset. To help us visualise our models, we will include only two variables in our models: age and acute physiology score.
 
 ```python
+# import libraries
+import os
+import numpy as np
 import pandas as pd
-import sqlite3
+from matplotlib import pyplot as plt
 
-# prepare query
-query = """
-SELECT p.unitadmitsource, p.gender, p.age, p.unittype,
-       a.actualhospitalmortality, a.acutePhysiologyScore
-FROM patient p
-INNER JOIN apachepatientresult a
-ON p.patientunitstayid = a.patientunitstayid
-WHERE a.apacheversion LIKE 'IVa'
-AND LOWER(p.unitadmitsource) LIKE "%emergency%"
-AND LOWER(p.unitstaytype) LIKE "admit%"
-AND LOWER(p.unittype) NOT LIKE "%neuro%";
-"""
+# load the data
+cohort = pd.read_csv('./eicu_cohort.csv')
 
-# Read sqlite query results into a pandas DataFrame
-con = sqlite3.connect("data/eicu_v2_0_1.sqlite3")
-cohort = pd.read_sql_query(query, con)
-con.close()
-
-# Verify that result of SQL query is stored in the dataframe
-print(cohort.head())
+# Display the first 5 rows of the data
+cohort.head()
 ```
 
 The data has been assigned to a dataframe called `cohort`. Each item that is listed after the `SELECT` statement appears as a column in the data. Let's take a look at the first few lines.

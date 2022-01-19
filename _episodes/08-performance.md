@@ -3,11 +3,12 @@ title: "Performance"
 teaching: 20
 exercises: 10
 questions:
-- "How well do our models perform?"
+- "How well do our predictive models perform?"
 objectives:
-- "Learn how to measure classification performance."
+- "Evaluate the performance of our different models."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "There is a large performance gap between different types of tree."
+- "Boosted models typically perform strongly."
 ---
 
 ## Comparing model performance

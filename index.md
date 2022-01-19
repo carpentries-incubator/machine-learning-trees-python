@@ -7,8 +7,6 @@ Decision trees are a family of algorithms that are based around a tree-like stru
 
 The dataset that we will be using for this project is a subset of the [eICU Collaborative Research Database][eicu-crd] that has been created for demonstration purposes. 
 
-The demo dataset is provided as an SQLite3 file, a relational database comprising approximately 25 tables. We will begin by loading relevant data to our local machine. 
-
 <!-- this is an html comment -->
 
 {% comment %} This is a comment in Liquid {% endcomment %}

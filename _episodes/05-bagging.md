@@ -3,11 +3,15 @@ title: "Bagging"
 teaching: 20
 exercises: 10
 questions:
-- "How can 'bagging' improve performance?"
+- “Bagging is the shortened name for what?” 
+- "How can bagging improve model performance?"
 objectives:
-- "Understand learners can be combined with bagging"
+- "Train a set of models using bagging."
+- "Visualise the decision boundaries."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "“Bagging” is short name for bootstrap aggregation."
+- "Bootstrapping is a data resampling technique."
+- "Bagging is another method for combining multiple weak learners to create a strong learner."
 ---
 
 ## Boostrap aggregation ("Bagging")

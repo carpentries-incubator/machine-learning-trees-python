@@ -5,9 +5,12 @@ exercises: 10
 questions:
 - "What is the state of the art in tree models?"
 objectives:
-- "Learn how to apply gradient boosted models."
+- "Train gradient boosted models."
+- "Visualise the decision boundaries."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "As a “boosting” method, gradient boosting involves iteratively building trees, aiming to improve upon misclassifications of the previous tree."
+- "Gradient boosting also borrows the concept of sub-sampling the variables (just like Random Forests), which can help to prevent overfitting."
+- "The performance gains come at the cost of interpretability."
 ---
 
 ## Gradient boosting

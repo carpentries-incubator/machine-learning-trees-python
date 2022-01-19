@@ -5,9 +5,11 @@ exercises: 10
 questions:
 - "How can subselection of variables improve performance?"
 objectives:
-- "Understand how learners can be combined with subselection of variables."
+- "Train a random forest model."
+- "Visualise the decision boundaries."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "With Random Forest models, we resample data and use subsets of features."
+- "Random Forest are powerful predictive models."
 ---
 
 ## Random Forest

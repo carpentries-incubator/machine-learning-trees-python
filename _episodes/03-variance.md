@@ -3,12 +3,17 @@ title: "Variance"
 teaching: 20
 exercises: 10
 questions:
-- "What is overfitting?"
 - "Why are decision trees 'high variance'?"
+- "What is overfitting?"
+- "Why might you choose to prune a tree?"
+- "What is the benefit is combining trees?"
 objectives:
 - "Understand variance in the context of decision trees"
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Overfitting is a problem that occurs when our algorithm is too closely aligned to our training data."
+- "Models that are overfitted may not generalise well to “unseen” data."
+- "Pruning is one approach for helping to prevent overfitting."
+- "By combining many of instances of “high variance” classifiers, we can end up with a single classifier with low variance."
 ---
 
 ## Increasing the depth of our tree

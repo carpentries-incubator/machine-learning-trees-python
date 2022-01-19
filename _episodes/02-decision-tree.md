@@ -4,11 +4,15 @@ teaching: 20
 exercises: 10
 questions:
 - "What is a decision tree?"
-- "How are decision boundaries selected?"
+- "Can decision trees be used for classification and regression?"
+- "What is gini impurity and how is it used?"
 objectives:
-- "Build a decision tree."
+- "Train a simple decision tree, with a depth of 1."
+- "Visualise the decision boundary."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Decision trees are intuitive models that can be used for prediction and regression."
+- "Gini impurity is a measure of “impurity”. The higher the value, the bigger the mix of classes. A 50/50 split of two classes would result in an index of 0.5."
+- "Greedy algorithms take the optimal decision at a single point, without considering the larger problem as a whole."
 ---
 
 ## The simplest tree

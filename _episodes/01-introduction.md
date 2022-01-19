@@ -3,12 +3,16 @@ title: "Introduction"
 teaching: 20
 exercises: 10
 questions:
-- "How can I prepare the data for analysis?"
+- "What steps are needed to prepare data for analysis?"
 - "How do I create training and test sets?"
 objectives:
-- "Extract the patient data and prepare it for analysis."
+- "Load the patient data."
+- "Explore summary characteristics of the data."
+- "Prepare the data for analysis."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Understanding your data is key."
+- "Data is typically partitioned into training and test sets."
+- "Setting random states helps to promote reproducibility."
 ---
 
 ## Predicting the outcome of critical care patients

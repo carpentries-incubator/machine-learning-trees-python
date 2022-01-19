@@ -3,11 +3,14 @@ title: "Boosting"
 teaching: 20
 exercises: 10
 questions:
-- "How can 'boosting' improve performance?"
+- "What is meant by a “weak learner”?"
+- "How can “boosting” improve performance?"
 objectives:
-- "Understand how learners can be combined with boosting"
+- "Use boosting to combine multiple weak learners into a strong learner."
+- "Visualise the decision boundaries."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "An algorithm that performs somewhat poorly at a task - such as simple decision tree - is sometimes referred to as a “weak learner”."
+- "With boosting, we create a combination of many weak learners to form a single “strong” learner."
 ---
 
 ## Boosting

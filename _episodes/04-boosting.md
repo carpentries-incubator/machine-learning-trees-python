@@ -29,7 +29,7 @@ from sklearn import ensemble
 # build the model
 clf = tree.DecisionTreeClassifier(max_depth=1)
 mdl = ensemble.AdaBoostClassifier(base_estimator=clf,n_estimators=6)
-mdl = mdl.fit(x_train,y_train)
+mdl = mdl.fit(x_train.values, y_train.values)
 
 # plot each individual decision tree
 fig = plt.figure(figsize=[12,6])

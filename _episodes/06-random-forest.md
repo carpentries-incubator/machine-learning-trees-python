@@ -23,7 +23,7 @@ Let's train the model.
 ```python
 np.random.seed(321)
 mdl = ensemble.RandomForestClassifier(max_depth=5, n_estimators=6, max_features=1)
-mdl = mdl.fit(x_train,y_train)
+mdl = mdl.fit(x_train.values, y_train.values)
 
 fig = plt.figure(figsize=[12,6])
 for i, estimator in enumerate(mdl.estimators_):    

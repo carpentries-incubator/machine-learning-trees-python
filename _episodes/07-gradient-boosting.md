@@ -24,7 +24,7 @@ Let's build a gradient boosting model.
 ```python
 np.random.seed(321)
 mdl = ensemble.GradientBoostingClassifier(n_estimators=10)
-mdl = mdl.fit(x_train, y_train)
+mdl = mdl.fit(x_train.values, y_train.values)
 
 plt.figure(figsize=[9,5])
 txt = 'Gradient boosted tree (final decision surface)'

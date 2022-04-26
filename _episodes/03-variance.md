@@ -23,7 +23,7 @@ In the previous episode we created a very simple decision tree. Let's see what h
 ```python
 # train model
 mdl = tree.DecisionTreeClassifier(max_depth=5)
-mdl = mdl.fit(x_train, y_train)
+mdl = mdl.fit(x_train.values, y_train.values)
 
 # plot tree
 plt.figure(figsize=[10,8])
@@ -60,7 +60,7 @@ Overfitting is a problem that occurs when our algorithm is too closely aligned t
 Let's prune the model and look again.
 
 ```python
-mdl = glowyr.prune(mdl, min_samples_leaf = 100)
+mdl = glowyr.prune(mdl, min_samples_leaf = 10)
 graph = glowyr.create_graph(mdl,feature_names=features)
 Image(graph.create_png())
 ```
@@ -98,14 +98,14 @@ for i in range(3):
     
     # only use the first 50
     idx = idx[:50]
-    X_temp = x_train.iloc[idx]
+    x_temp = x_train.iloc[idx]
     y_temp = y_train.values[idx]
     
     # initialize the model
     mdl = tree.DecisionTreeClassifier(max_depth=5)
     
     # train the model using the dataset
-    mdl = mdl.fit(X_temp, y_temp)
+    mdl = mdl.fit(x_temp.values, y_temp)
     txt = f'Random sample {i+1}'
     glowyr.plot_model_pred_2d(mdl, X_temp, y_temp, title=txt)
 ```

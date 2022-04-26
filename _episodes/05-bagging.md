@@ -28,7 +28,7 @@ Let's take a look at a simple bootstrap model.
 np.random.seed(321)
 clf = tree.DecisionTreeClassifier(max_depth=5)
 mdl = ensemble.BaggingClassifier(base_estimator=clf, n_estimators=6)
-mdl = mdl.fit(x_train, y_train)
+mdl = mdl.fit(x_train.values, y_train.values)
 
 fig = plt.figure(figsize=[12,6])
 for i, estimator in enumerate(mdl.estimators_):    

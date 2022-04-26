@@ -32,7 +32,7 @@ from sklearn import tree
 mdl = tree.DecisionTreeClassifier(max_depth=1)
 
 # fit the model to the data - trying to predict y from X
-mdl = mdl.fit(x_train, y_train)
+mdl = mdl.fit(x_train.values, y_train.values)
 ```
 
 Our model is so simple that we can look at the full decision tree.

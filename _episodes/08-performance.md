@@ -19,17 +19,17 @@ We've now learned the basics of the various tree methods and have visualized mos
 from sklearn import metrics
 
 clf = dict()
-clf['Decision Tree'] = tree.DecisionTreeClassifier(criterion='entropy', splitter='best').fit(x_train,y_train)
-clf['Gradient Boosting'] = ensemble.GradientBoostingClassifier(n_estimators=10).fit(x_train, y_train)
-clf['Random Forest'] = ensemble.RandomForestClassifier(n_estimators=10).fit(x_train, y_train)
-clf['Bagging'] =  ensemble.BaggingClassifier(n_estimators=10).fit(x_train, y_train)
-clf['AdaBoost'] =  ensemble.AdaBoostClassifier(n_estimators=10).fit(x_train, y_train)
+clf['Decision Tree'] = tree.DecisionTreeClassifier(criterion='entropy', splitter='best').fit(x_train.values, y_train.values)
+clf['Gradient Boosting'] = ensemble.GradientBoostingClassifier(n_estimators=10).fit(x_train.values, y_train.values)
+clf['Random Forest'] = ensemble.RandomForestClassifier(n_estimators=10).fit(x_train.values, y_train.values)
+clf['Bagging'] =  ensemble.BaggingClassifier(n_estimators=10).fit(x_train.values, y_train.values)
+clf['AdaBoost'] =  ensemble.AdaBoostClassifier(n_estimators=10).fit(x_train.values, y_train.values)
 
 fig = plt.figure(figsize=[10,10])
 
 print('AUROC\tModel')
 for i, curr_mdl in enumerate(clf):    
-    yhat = clf[curr_mdl].predict_proba(x_test)[:,1]
+    yhat = clf[curr_mdl].predict_proba(x_test.values)[:,1]
     score = metrics.roc_auc_score(y_test, yhat)
     print('{:0.3f}\t{}'.format(score, curr_mdl))
     ax = fig.add_subplot(3,2,i+1)

@@ -43,13 +43,13 @@ cohort.head()
 
 The data has been assigned to a dataframe called `cohort`. Each item that is listed after the `SELECT` statement appears as a column in the data. Let's take a look at the first few lines:
 
-|index|gender|age|admissionweight|unabridgedhosplos|acutephysiologyscore|actualhospitalmortality|heartrate|meanbp|creatinine|temperature|respiratoryrate|wbc|admissionheight|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|0|Male|45\.0|116\.0|3\.0778|41|ALIVE|109\.0|154\.0|1\.01|36\.2|41\.0|10\.0|178\.0|
-|1|Male|57\.0|NaN|7\.6736|26|ALIVE|106\.0|46\.0|-1\.0|36\.3|6\.0|10\.1|172\.7|
-|2|Female|80\.0|65\.3|7\.8806|7|ALIVE|96\.0|106\.0|-1\.0|36\.4|18\.0|8\.5|170\.2|
-|3|Female|48\.0|86\.4|27\.5583|44|ALIVE|102\.0|54\.0|1\.16|36\.9|39\.0|6\.1|177\.8|
-|4|Female|59\.0|66\.6|15\.0778|56|ALIVE|134\.0|172\.0|1\.03|34\.8|32\.0|25\.5|170\.2|
+|index|gender|age|admissionweight|unabridgedhosplos|acutephysiologyscore|apachescore|actualhospitalmortality|heartrate|meanbp|creatinine|temperature|respiratoryrate|wbc|admissionheight|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|0|Female|48|86\.4|27\.5583|44|49|ALIVE|102\.0|54\.0|1\.16|36\.9|39\.0|6\.1|177\.8|
+|1|Female|59|66\.6|15\.0778|56|61|ALIVE|134\.0|172\.0|1\.03|34\.8|32\.0|25\.5|170\.2|
+|2|Male|31|66\.8|2\.7326|45|45|ALIVE|138\.0|71\.0|2\.35|37\.2|34\.0|21\.4|188\.0|
+|3|Female|51|77\.1|0\.1986|19|24|ALIVE|122\.0|73\.0|-1\.0|36\.8|26\.0|-1\.0|160\.0|
+|4|Female|48|63\.4|1\.7285|25|30|ALIVE|130\.0|68\.0|1\.1|-1\.0|29\.0|7\.6|172\.7|
 
 
 ## Preparing the data for analysis
@@ -86,23 +86,24 @@ The table below shows summary characteristics of our dataset:
 
 |                                    |         | Missing   | Overall      | ALIVE        | EXPIRED      |
 |------------------------------------|---------|-----------|--------------|--------------|--------------|
-| n                                  |         |           | 1109         | 1012         | 97           |
-| gender, n (%)                      | Female  | 0         | 621 (56.0)   | 576 (56.9)   | 45 (46.4)    |
-|                                    | Male    |           | 487 (43.9)   | 436 (43.1)   | 51 (52.6)    |
-|                                    | Unknown |           | 1 (0.1)      |              | 1 (1.0)      |
-| age, mean (SD)                     |         | 0         | 64.3 (16.7)  | 63.5 (16.7)  | 73.0 (14.5)  |
-| admissionweight, mean (SD)         |         | 27        | 83.1 (25.1)  | 83.5 (25.2)  | 79.2 (23.5)  |
-| unabridgedhosplos, mean (SD)       |         | 0         | 7.9 (10.1)   | 7.9 (10.0)   | 7.8 (11.1)   |
-| acutephysiologyscore, mean (SD)    |         | 0         | 42.9 (23.4)  | 40.2 (20.2)  | 70.5 (34.6)  |
-| heartrate, mean (SD)               |         | 0         | 102.4 (32.3) | 101.4 (31.5) | 112.9 (38.1) |
-| meanbp, mean (SD)                  |         | 0         | 89.5 (41.9)  | 90.0 (41.2)  | 84.3 (49.0)  |
-| creatinine, mean (SD)              |         | 0         | 0.9 (1.9)    | 0.8 (1.9)    | 1.3 (1.9)    |
-| temperature, mean (SD)             |         | 0         | 35.6 (5.6)   | 35.8 (5.0)   | 33.3 (9.7)   |
-| respiratoryrate, mean (SD)         |         | 0         | 27.9 (15.6)  | 27.4 (15.6)  | 33.1 (14.7)  |
-| wbc, mean (SD)                     |         | 0         | 7.6 (8.2)    | 7.3 (7.8)    | 10.5 (11.2)  |
-| admissionheight, mean (SD)         |         | 14        | 167.9 (14.1) | 167.8 (13.8) | 169.2 (16.8) |
-| actualhospitalmortality_enc, n (%) | 0       | 0         | 1012 (91.3)  | 1012 (100.0) |              |
-|                                    | 1       |           | 97 (8.7)     |              | 97 (100.0)   |
+| n                                  |         |           | 536          | 488          | 48           |
+| gender, n (%)                      | Female  | 0         | 305 (56.9)   | 281 (57.6)   | 24 (50.0)    |
+|                                    | Male    |           | 230 (42.9)   | 207 (42.4)   | 23 (47.9)    |
+|                                    | Unknown |           | 1 (0.2)      |              | 1 (2.1)      |
+| age, mean (SD)                     |         | 0         | 63.4 (17.4)  | 62.2 (17.4)  | 75.2 (12.6)  |
+| admissionweight, mean (SD)         |         | 16        | 81.8 (25.0)  | 82.3 (25.1)  | 77.0 (23.3)  |
+| unabridgedhosplos, mean (SD)       |         | 0         | 5.6 (6.8)    | 5.7 (6.7)    | 4.3 (7.8)    |
+| acutephysiologyscore, mean (SD)    |         | 0         | 41.7 (22.7)  | 38.5 (18.8)  | 74.3 (31.7)  |
+| apachescore, mean (SD)             |         | 0         | 53.6 (25.1)  | 49.9 (21.1)  | 91.8 (30.5)  |
+| heartrate, mean (SD)               |         | 0         | 101.5 (32.9) | 100.3 (31.9) | 113.9 (40.0) |
+| meanbp, mean (SD)                  |         | 0         | 89.6 (41.5)  | 90.7 (40.7)  | 78.8 (47.6)  |
+| creatinine, mean (SD)              |         | 0         | 0.8 (2.0)    | 0.8 (2.0)    | 1.4 (1.8)    |
+| temperature, mean (SD)             |         | 0         | 35.6 (5.6)   | 35.9 (4.8)   | 32.9 (10.4)  |
+| respiratoryrate, mean (SD)         |         | 0         | 27.4 (15.5)  | 26.8 (15.4)  | 33.9 (15.2)  |
+| wbc, mean (SD)                     |         | 0         | 6.5 (7.6)    | 6.2 (7.1)    | 9.9 (11.2)   |
+| admissionheight, mean (SD)         |         | 8         | 168.4 (14.5) | 168.2 (13.6) | 170.3 (21.5) |
+| actualhospitalmortality_enc, n (%) | 0       | 0         | 488 (91.0)   | 488 (100.0)  |              |
+|                                    | 1       |           | 48 (9.0)     |              | 48 (100.0)   |
 
 ## Creating train and test sets
 

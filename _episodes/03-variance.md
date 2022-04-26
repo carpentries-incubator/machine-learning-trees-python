@@ -27,8 +27,7 @@ mdl = mdl.fit(x_train, y_train)
 
 # plot tree
 plt.figure(figsize=[10,8])
-glowyr.plot_model_pred_2d(mdl, x_train, y_train,
-                      title="Decision tree (depth 5)")
+glowyr.plot_model_pred_2d(mdl, x_train, y_train, title="Decision tree (depth 5)")
 ```
 
 ![Simple tree (depth 5)](../fig/section3-fig1.png){: width="600px"}
@@ -61,7 +60,7 @@ Overfitting is a problem that occurs when our algorithm is too closely aligned t
 Let's prune the model and look again.
 
 ```python
-mdl = glowyr.prune(mdl, min_samples_leaf = 10)
+mdl = glowyr.prune(mdl, min_samples_leaf = 100)
 graph = glowyr.create_graph(mdl,feature_names=features)
 Image(graph.create_png())
 ```

@@ -35,23 +35,22 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 # load the data
-cohort = pd.read_csv('./eicu_cohort.csv')
+cohort = pd.read_csv('./eicu_cohort_trees.csv')
 
 # Display the first 5 rows of the data
 cohort.head()
 ```
 
-The data has been assigned to a dataframe called `cohort`. Each item that is listed after the `SELECT` statement appears as a column in the data. Let's take a look at the first few lines.
+The data has been assigned to a dataframe called `cohort`. Each item that is listed after the `SELECT` statement appears as a column in the data. Let's take a look at the first few lines:
 
-```
-        unitadmitsource  gender   age      unittype actualhospitalmortality  acutephysiologyscore
-0  Emergency Department  Female    87  Med-Surg ICU                   ALIVE                    23
-1  Emergency Department  Female    34  Med-Surg ICU                   ALIVE                    25
-2  Emergency Department  Female    60  Med-Surg ICU                   ALIVE                    53
-3  Emergency Department    Male    28  Med-Surg ICU                   ALIVE                    16
-4  Emergency Department  Female  > 89  Med-Surg ICU                   ALIVE                    33
-```
-{: .output}
+|index|gender|age|admissionweight|unabridgedhosplos|acutephysiologyscore|actualhospitalmortality|heartrate|meanbp|creatinine|temperature|respiratoryrate|wbc|admissionheight|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|0|Male|45\.0|116\.0|3\.0778|41|ALIVE|109\.0|154\.0|1\.01|36\.2|41\.0|10\.0|178\.0|
+|1|Male|57\.0|NaN|7\.6736|26|ALIVE|106\.0|46\.0|-1\.0|36\.3|6\.0|10\.1|172\.7|
+|2|Female|80\.0|65\.3|7\.8806|7|ALIVE|96\.0|106\.0|-1\.0|36\.4|18\.0|8\.5|170\.2|
+|3|Female|48\.0|86\.4|27\.5583|44|ALIVE|102\.0|54\.0|1\.16|36\.9|39\.0|6\.1|177\.8|
+|4|Female|59\.0|66\.6|15\.0778|56|ALIVE|134\.0|172\.0|1\.03|34\.8|32\.0|25\.5|170\.2|
+
 
 ## Preparing the data for analysis
 
@@ -75,33 +74,35 @@ cohort['age'] = cohort['age'].fillna(value=91.5)
 Now let's use the tableone package to review our dataset.
 
 ```python
+! pip install tableone
+
 from tableone import tableone
-columns = ['acutephysiologyscore','age','gender']
+
 t1 = tableone(cohort, groupby='actualhospitalmortality')
 print(t1.tabulate(tablefmt = "github"))
 ```
 
-```
-|                                    |                      | Missing   | Overall      | ALIVE       | EXPIRED     |
-|------------------------------------|----------------------|-----------|--------------|-------------|-------------|
-| n                                  |                      |           | 1012         | 937         | 75          |
-| unitadmitsource, n (%)             | Emergency Department | 0         | 1012 (100.0) | 937 (100.0) | 75 (100.0)  |
-| gender, n (%)                      |                      | 0         | 1 (0.1)      |             | 1 (1.3)     |
-|                                    | Female               |           | 400 (39.5)   | 368 (39.3)  | 32 (42.7)   |
-|                                    | Male                 |           | 611 (60.4)   | 569 (60.7)  | 42 (56.0)   |
-| age, mean (SD)                     |                      | 0         | 60.9 (19.0)  | 59.9 (19.0) | 72.8 (14.0) |
-| unittype, n (%)                    | CCU-CTICU            | 0         | 38 (3.8)     | 35 (3.7)    | 3 (4.0)     |
-|                                    | CSICU                |           | 7 (0.7)      | 7 (0.7)     |             |
-|                                    | CTICU                |           | 5 (0.5)      | 5 (0.5)     |             |
-|                                    | Cardiac ICU          |           | 58 (5.7)     | 55 (5.9)    | 3 (4.0)     |
-|                                    | MICU                 |           | 49 (4.8)     | 45 (4.8)    | 4 (5.3)     |
-|                                    | Med-Surg ICU         |           | 836 (82.6)   | 773 (82.5)  | 63 (84.0)   |
-|                                    | SICU                 |           | 19 (1.9)     | 17 (1.8)    | 2 (2.7)     |
-| acutephysiologyscore, mean (SD)    |                      | 0         | 38.8 (22.0)  | 36.6 (19.2) | 66.5 (33.5) |
-| actualhospitalmortality_enc, n (%) | 0                    | 0         | 937 (92.6)   | 937 (100.0) |             |
-|                                    | 1                    |           | 75 (7.4)     |             | 75 (100.0)  |
-```
-{: .output}
+The table below shows summary characteristics of our dataset:
+
+|                                    |         | Missing   | Overall      | ALIVE        | EXPIRED      |
+|------------------------------------|---------|-----------|--------------|--------------|--------------|
+| n                                  |         |           | 1109         | 1012         | 97           |
+| gender, n (%)                      | Female  | 0         | 621 (56.0)   | 576 (56.9)   | 45 (46.4)    |
+|                                    | Male    |           | 487 (43.9)   | 436 (43.1)   | 51 (52.6)    |
+|                                    | Unknown |           | 1 (0.1)      |              | 1 (1.0)      |
+| age, mean (SD)                     |         | 0         | 64.3 (16.7)  | 63.5 (16.7)  | 73.0 (14.5)  |
+| admissionweight, mean (SD)         |         | 27        | 83.1 (25.1)  | 83.5 (25.2)  | 79.2 (23.5)  |
+| unabridgedhosplos, mean (SD)       |         | 0         | 7.9 (10.1)   | 7.9 (10.0)   | 7.8 (11.1)   |
+| acutephysiologyscore, mean (SD)    |         | 0         | 42.9 (23.4)  | 40.2 (20.2)  | 70.5 (34.6)  |
+| heartrate, mean (SD)               |         | 0         | 102.4 (32.3) | 101.4 (31.5) | 112.9 (38.1) |
+| meanbp, mean (SD)                  |         | 0         | 89.5 (41.9)  | 90.0 (41.2)  | 84.3 (49.0)  |
+| creatinine, mean (SD)              |         | 0         | 0.9 (1.9)    | 0.8 (1.9)    | 1.3 (1.9)    |
+| temperature, mean (SD)             |         | 0         | 35.6 (5.6)   | 35.8 (5.0)   | 33.3 (9.7)   |
+| respiratoryrate, mean (SD)         |         | 0         | 27.9 (15.6)  | 27.4 (15.6)  | 33.1 (14.7)  |
+| wbc, mean (SD)                     |         | 0         | 7.6 (8.2)    | 7.3 (7.8)    | 10.5 (11.2)  |
+| admissionheight, mean (SD)         |         | 14        | 167.9 (14.1) | 167.8 (13.8) | 169.2 (16.8) |
+| actualhospitalmortality_enc, n (%) | 0       | 0         | 1012 (91.3)  | 1012 (100.0) |              |
+|                                    | 1       |           | 97 (8.7)     |              | 97 (100.0)   |
 
 ## Creating train and test sets
 

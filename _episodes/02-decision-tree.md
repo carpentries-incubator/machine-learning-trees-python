@@ -38,6 +38,8 @@ mdl = mdl.fit(x_train, y_train)
 Our model is so simple that we can look at the full decision tree.
 
 ```python
+!pip install glowyr
+
 import glowyr
 from IPython.display import display, Image
 
@@ -67,8 +69,7 @@ import matplotlib.pyplot as plt
 # look at the regions in a 2d plot
 # based on scikit-learn tutorial plot_iris.html
 plt.figure(figsize=[10,8])
-glowyr.plot_model_pred_2d(mdl, x_train, y_train, 
-                       title="Decision tree (depth 1)")
+glowyr.plot_model_pred_2d(mdl, x_train, y_train, title="Decision tree (depth 1)")
 ```
 
 ![Simple tree](../fig/section2-fig2.png){: width="600px"}

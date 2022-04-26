@@ -34,8 +34,7 @@ fig = plt.figure(figsize=[12,6])
 for i, estimator in enumerate(mdl.estimators_):    
     ax = fig.add_subplot(2,3,i+1)
     txt = 'Tree {}'.format(i+1)
-    glowyr.plot_model_pred_2d(estimator, x_train, y_train, 
-                           title=txt)
+    glowyr.plot_model_pred_2d(estimator, x_train, y_train, title=txt)
 ```
 
 ![](../fig/section5-fig1.png){: width="900px"}

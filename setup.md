@@ -19,7 +19,7 @@ and in [Anaconda documentation][anaconda-install].
 
 ## Obtain lesson materials
 
-1. Download [eicu-cohort.csv](./data/eicu_cohort_trees.csv).
+1. Download [eicu_cohort_trees.csv](./data/eicu_cohort_trees.csv).
 2. Create a folder called `carpentries-ml-trees` on your Desktop.
 3. Move downloaded files to `carpentries-ml-trees`.
 

@@ -45,7 +45,7 @@ Looking at our example above, we can see that the first iteration builds the exa
 
 In the next iteration we can see the model shift. It misclassified several observations in class 1, and now these are the most important observations. Consequently, it picks the boundary that, while prioritizing correctly classifies these observations, still tries to best classify the rest of the data too.
 
-The iteration process continues, until the model is apparently creating boundaries to capture just one or two observations (see, for example, Tree 6 on the bottom right).
+The iteration process continues until the model may be creating boundaries to capture just one or two observations.
 
 One important point is that each tree is weighted by its global error. So, for example, Tree 6 would carry less weight in the final model. It is clear that we wouldn't want Tree 6 to carry the same importance as Tree 1, when Tree 1 is doing so much better overall. It turns out that weighting each tree by the inverse of its error is a pretty good way to do this.
 

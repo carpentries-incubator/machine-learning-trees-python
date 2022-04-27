@@ -34,6 +34,8 @@ for i, estimator in enumerate(mdl.estimators_):
 
 ![](../fig/section6-fig1.png){: width="900px"}
 
+Let's look at final model's decision surface.
+
 ```python
 plt.figure(figsize=[9,5])
 txt = 'Random forest (final decision surface)'

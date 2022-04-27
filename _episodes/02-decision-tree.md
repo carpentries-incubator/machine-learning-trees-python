@@ -54,9 +54,9 @@ Here we see three nodes: a node at the top, a node in the lower left, and a node
 
 The top node is the root of the tree: it contains all the data. Let's read this node bottom to top:
 
-- value = [384, 44]: Current class balance. There are 384 observations of class 0 and 44 observations of class 1.
-- samples = 428: Number of samples assessed at this node.
-- gini = 0.184: Gini impurity, a measure of "impurity". The higher the value, the bigger the mix of classes. A 50/50 split of two classes would result in an index of 0.5.
+- value = [339, 36]: Current class balance. There are 339 observations of class 0 and 36 observations of class 1.
+- samples = 375: Number of samples assessed at this node.
+- gini = 0.174: Gini impurity, a measure of "impurity". The higher the value, the bigger the mix of classes. A 50/50 split of two classes would result in an index of 0.5.
 - acutePhysiologyScore <=78.5: Decision rule learned by the node. In this case, patients with a score of <= 78.5 are moved into the left node and >78.5 to the right.
 
 The gini impurity is actually used by the algorithm to determine a split. The model evaluates every feature (in our case, age and score) at every possible split (46, 47, 48..) to find the point with the lowest gini impurity in two resulting nodes.

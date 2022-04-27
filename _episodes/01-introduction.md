@@ -74,7 +74,7 @@ cohort['age'] = cohort['age'].fillna(value=91.5)
 Now let's use the tableone package to review our dataset.
 
 ```python
-! pip install tableone
+!pip install tableone
 
 from tableone import tableone
 

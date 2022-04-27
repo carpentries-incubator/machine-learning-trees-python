@@ -43,13 +43,13 @@ Image(graph.create_png())
 
 ## Overfitting
 
-Looking at the tree, we can see that there are some very specific rules. Consider our patient aged 65 years with an acute physiology score of 87. From the top of the tree, we would work our way down:
+Looking at the tree, we can see that there are some very specific rules. Consider a patient aged 45 years with an acute physiology score of 100. From the top of the tree, we would work our way down:
 
 - acutePhysiologyScore <= 78.5? No.
-- acutePhysiologyScore <= 106.5? Yes.
-- age <= 75.5? Yes
-- age <= 66. Yes.
-- age <= 62.5? No.
+- acutePhysiologyScore <= 104.5? Yes.
+- age <= 76.5? Yes
+- age <= 55.5. Yes.
+- acutePhysiologyScore <= 96.5? No.
 
 This leads us to our single node with a gini impurity of 0. Having an entire rule based upon this one observation seems silly, but it is perfectly logical at the moment. The only objective the algorithm cares about is minimizing the gini impurity. 
 
@@ -76,7 +76,7 @@ glowyr.plot_model_pred_2d(mdl, x_train, y_train, title="Pruned decision tree")
 
 ![Simple tree (depth 5)](../fig/section3-fig4.png){: width="600px"}
 
-Our pruned decision tree has a much more intuitive boundary, but does make some errors. We have reduced our performance in an effort to simplify the tree. This is the classic machine learning problem of trading off complexity with error.
+Our pruned decision tree has a more intuitive boundary, but does make some errors. We have reduced our performance in an effort to simplify the tree. This is the classic machine learning problem of trading off complexity with error.
 
 Note that, in order to do this, we "invented" the minimum samples per leaf node of 10. Why 10? Why not 5? Why not 20? The answer is: it depends on the dataset. Heuristically choosing these parameters can be time consuming, and we will see later on how gradient boosting elegantly handles this task.
 

@@ -107,7 +107,7 @@ for i in range(3):
     # train the model using the dataset
     mdl = mdl.fit(x_temp.values, y_temp)
     txt = f'Random sample {i+1}'
-    glowyr.plot_model_pred_2d(mdl, X_temp, y_temp, title=txt)
+    glowyr.plot_model_pred_2d(mdl, x_temp, y_temp, title=txt)
 ```
 
 ![Simple tree (depth 5)](../fig/section3-fig5.png){: width="900px"}

@@ -14,7 +14,7 @@ keypoints:
 - "Bagging is another method for combining multiple weak learners to create a strong learner."
 ---
 
-## Boostrap aggregation ("Bagging")
+## Bootstrap aggregation ("Bagging")
 
 Bootstrap aggregation, or "Bagging", is another form of ensemble learning where we aim to build a single good model by combining many models together. With AdaBoost, we modified the data to focus on hard to classify observations. We can imagine this as a form of resampling the data for each new tree. For example, say we have three observations: A, B, and C, [A, B, C]. If we correctly classify observations [A, B], but incorrectly classify C, then AdaBoost involves building a new tree that focuses on C. Equivalently, we could say AdaBoost builds a new tree using the dataset [A, B, C, C, C], where we have intentionally repeated observation C 3 times so that the algorithm thinks it is 3 times as important as the other observations. Makes sense?
 

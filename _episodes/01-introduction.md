@@ -41,7 +41,7 @@ cohort = pd.read_csv('./eicu_cohort_trees.csv')
 cohort.head()
 ```
 
-The data has been assigned to a dataframe called `cohort`. Each item that is listed after the `SELECT` statement appears as a column in the data. Let's take a look at the first few lines:
+The data has been assigned to a dataframe called `cohort`. Let's take a look at the first few lines:
 
 |index|gender|age|admissionweight|unabridgedhosplos|acutephysiologyscore|apachescore|actualhospitalmortality|heartrate|meanbp|creatinine|temperature|respiratoryrate|wbc|admissionheight|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|

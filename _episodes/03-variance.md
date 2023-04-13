@@ -43,15 +43,25 @@ Image(graph.create_png())
 
 ## Overfitting
 
-Looking at the tree, we can see that there are some very specific rules. Consider a patient aged 45 years with an acute physiology score of 100. From the top of the tree, we would work our way down:
+Looking at the tree, we can see that there are some very specific rules. 
 
-- acutePhysiologyScore <= 78.5? No.
-- acutePhysiologyScore <= 104.5? Yes.
-- age <= 76.5? Yes
-- age <= 55.5. Yes.
-- acutePhysiologyScore <= 96.5? No.
-
-This leads us to our single node with a gini impurity of 0. Having an entire rule based upon this one observation seems silly, but it is perfectly logical at the moment. The only objective the algorithm cares about is minimizing the gini impurity. 
+> ## Question
+> a) Consider a patient aged 45 years with an acute physiology score of 100. Using the image of the tree, work through the nodes until your can make a prediction. What outcome does your model predict?   
+> b) What is the gini impurity of the final node, and why?   
+> c) Does the decision that led to this final node seem sensible to you? Why?    
+> > ## Answer
+> > a) From the top of the tree, we would work our way down:
+> > 
+> > - acutePhysiologyScore <= 78.5? No.
+> > - acutePhysiologyScore <= 104.5? Yes.
+> > - age <= 76.5? Yes
+> > - age <= 55.5. Yes.
+> > - acutePhysiologyScore <= 96.5? No.    
+> > 
+> > b) This leads us to our single node with a gini impurity of 0.  The node contains a single class (i.e. it is completely "pure".).   
+> > c) Having an entire rule based upon this one observation seems silly, but it is perfectly logical at the moment. The only objective the algorithm cares about is minimizing the gini impurity.      
+> {: .solution}
+{: .challenge} 
 
 Overfitting is a problem that occurs when our algorithm is too closely aligned to our training data. The result is that the model may not generalise well to "unseen" data, such as observations for new patients entering a critical care unit. This is where "pruning" comes in.
 
@@ -61,7 +71,7 @@ Let's prune the model and look again.
 
 ```python
 mdl = glowyr.prune(mdl, min_samples_leaf = 10)
-graph = glowyr.create_graph(mdl,feature_names=features)
+graph = glowyr.create_graph(mdl, feature_names=features)
 Image(graph.create_png())
 ```
 
@@ -112,11 +122,20 @@ for i in range(3):
 
 ![Simple tree (depth 5)](../fig/section3-fig5.png){: width="900px"}
 
-Above we can see that we are using random subsets of data, and as a result, our decision boundary can change quite a bit. As you could guess, we actually don't want a model that randomly works well and randomly works poorly, so you may wonder why this is useful.
+Above we can see that we are using random subsets of data, and as a result, our decision boundary can change quite a bit. As you could guess, we actually don't want a model that randomly works well and randomly works poorly.
 
-The trick is that by combining many of instances of "high variance" classifiers (decision trees), we can end up with a single classifier with low variance. There is an old joke: two farmers and a statistician go hunting. They see a deer: the first farmer shoots, and misses to the left. The next farmer shoots, and misses to the right. The statistician yells "We got it!!".
+There is an old joke: two farmers and a statistician go hunting. They see a deer: the first farmer shoots, and misses to the left. The next farmer shoots, and misses to the right. The statistician yells "We got it!!".
 
 While it doesn't quite hold in real life, it turns out that this principle does hold for decision trees. Combining them in the right way ends up building powerful models.
+
+> ## Question
+> a) Why are decision trees considered have high variance?     
+> b) An "ensemble" is the name used for a machine learning model that aggregates the decisions of multiple sub-models. Why might creating ensembles of decision trees be a good idea?   
+> > ## Answer
+> > a) Minor changes in the data used to train decision trees can lead to very different model performance.      
+> > b) By combining many of instances of "high variance" classifiers (decision trees), we can end up with a single classifier with low variance.   
+> {: .solution}
+{: .challenge} 
 
 {% include links.md %}
 

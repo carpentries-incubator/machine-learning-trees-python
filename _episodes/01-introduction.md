@@ -25,7 +25,7 @@ We will use decision trees for this task. Decision trees are a family of intuiti
 
 ## Load the patient cohort
 
-We will begin by extracting a set of observations from our critical care dataset. To help us visualise our models, we will include only two variables in our models: age and acute physiology score.
+We will begin by loading a set of observations from our critical care dataset. The data includes variables collected on Day 1 of the stay, along with outcomes such as length of stay and in-hospital mortality.
 
 ```python
 # import libraries
@@ -51,7 +51,6 @@ The data has been assigned to a dataframe called `cohort`. Let's take a look at 
 |3|Female|51|77\.1|0\.1986|19|24|ALIVE|122\.0|73\.0|-1\.0|36\.8|26\.0|-1\.0|160\.0|
 |4|Female|48|63\.4|1\.7285|25|30|ALIVE|130\.0|68\.0|1\.1|-1\.0|29\.0|7\.6|172\.7|
 
-
 ## Preparing the data for analysis
 
 We first need to do some basic data preparation. 
@@ -63,7 +62,7 @@ encoder = LabelEncoder()
 cohort['actualhospitalmortality_enc'] = encoder.fit_transform(cohort['actualhospitalmortality'])
 ```
 
-In the eICU Collaborative Research Database, ages >89 years have been removed to comply with data sharing regulations. We will need to decide how to handle these ages. For simplicity, we will assign an age of 91.5 years to these patients.
+In the eICU Research Database, ages over 89 years are recorded as ">89" to comply with US data privacy laws. For simplicity, we will assign an age of 91.5 years to these patients (this is the approximate average age of patients over 89 in the dataset).
 
 ```python
 # Handle the deidentified ages
@@ -105,9 +104,20 @@ The table below shows summary characteristics of our dataset:
 | actualhospitalmortality_enc, n (%) | 0       | 0         | 488 (91.0)   | 488 (100.0)  |              |
 |                                    | 1       |           | 48 (9.0)     |              | 48 (100.0)   |
 
+> ## Question
+> a) What proportion of patients survived their hospital stay?  
+> b) What is the "apachescore" variable?  Hint, see the [Wikipeda entry for the Apache Score](https://en.wikipedia.org/wiki/APACHE_II ).  
+> c) What is the average age of patients?   
+> > ## Answer
+> > a) 91% of patients survived their stay. There is 9% in-hospital mortality.   
+> > b) APACHE ("Acute Physiology and Chronic Health Evaluation II") is a severity-of-disease classification system. It is applied within 24 hours of admission of a patient to an intensive care unit. Higher scores correspond to more severe disease and a higher risk of death.    
+> > c) The median age is 64 years. Remember that the age of patients above 89 years is unknown. Median is therefore a better measure of central tendency. The median age can be calculated with `cohort['age'].median()`.
+> {: .solution}
+{: .challenge} 
+
 ## Creating train and test sets
 
-We only focus on two variables for our analysis, age and acute physiology score. Limiting ourselves to two variables will make it easier to visualize our models.
+We will only focus on two variables for our analysis, age and acute physiology score. Limiting ourselves to two variables (or "features") will make it easier to visualize our models. 
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -120,6 +130,15 @@ y = cohort[outcome]
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, random_state =  42)
 ```
+
+> ## Question
+> a) Why did we split our data into training and test sets?   
+> b) What is the effect of setting a random state in the splotting algorithm?    
+> > ## Answer
+> > a) We want to be able to evaluate our model on data that it has not seen before. If we evaluate our model on data that it is trained upon, we will overestimate the performance.    
+> > b) Setting the random state means that the split will be deterministic (i.e. we will all see the same "random" split). This helps to ensure our analysis is reproducible.   
+> {: .solution}
+{: .challenge} 
 
 {% include links.md %}
 

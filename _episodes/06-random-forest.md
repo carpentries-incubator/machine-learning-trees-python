@@ -34,6 +34,17 @@ for i, estimator in enumerate(mdl.estimators_):
 
 ![](../fig/section6-fig1.png){: width="900px"}
 
+> ## Question
+> a) When specifying the model, we set `max_features` to `1`. All of the trees make decisions using both features, so it appears that our model is not respecting the argument.  What is the explanation for this inconsistency?
+> b) What would you expect to see with a `max_features` of `1` AND a `max_depth` of `1`? 
+> c) Repeat the plots with the new argument to check your answer to b. What do you see with respect to Age? Why?
+> > ## Answer
+> > a) If it was true that setting `max_features=1` as an argument led to trees with a single variable, we would not see the trees in our figure (which all make decisions based on both features). The explanation is that features are being limited at each split, not at the model level.
+> > b) Setting `max_features` to `1` limits our trees to a single split. We now see two sets of trees, some restricted to Acute Physiology Score and some restricted to Age.
+> > c) Our trees decided against splitting on Age. The model was unable to find a single Age that led to improvement (based on its optimisation criteria).
+> {: .solution}
+{: .challenge} 
+
 Let's look at final model's decision surface.
 
 ```python
